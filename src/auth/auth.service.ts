@@ -33,7 +33,9 @@ export class AuthService {
         user.email,
       );
       if (isEmailAlreadyExist)
-        throw new BadRequestException(`User ${user.email} already exists`);
+        throw new BadRequestException(
+          `User with email: ${user.email}, already exists`,
+        );
       const salt = await bcrypt.genSalt();
 
       const hash = await bcrypt.hash(user.password, salt);
@@ -72,7 +74,7 @@ export class AuthService {
   async createAdmin(data) {
     try {
       data.role = UserRole.ADMIN;
-      return this.registerUser(data);
+      return await this.registerUser(data);
     } catch (error) {
       this.logger.error(error?.message);
       throw new HttpException(
