@@ -1,14 +1,17 @@
 import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
   Injectable,
-  InternalServerErrorException,
   Logger,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { nanoid } from 'nanoid';
 import { UserRepository } from '@/users/repositories/user.repository';
-import { CreateUserDTO } from '@/users/dto/create-users.dto';
+import {  CreateUserDTO } from '@/users/dto/create-users.dto';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
+import { UserRole } from '@/users/user.constants';
 
 @Injectable()
 export class AuthService {
@@ -26,6 +29,8 @@ export class AuthService {
 
   async registerUser(user: CreateUserDTO) {
     try {
+      const isEmailAlreadyExist = await this.userRepository.findByEmail(user.email);
+      if(isEmailAlreadyExist) throw new BadRequestException(`User ${user.email} already exists`)
       const salt = await bcrypt.genSalt();
 
       const hash = await bcrypt.hash(user.password, salt);
@@ -33,9 +38,9 @@ export class AuthService {
 
       user.id = nanoid(11); //set ID
       return await this.userRepository.store(user);
-    } catch (err) {
-      this.logger.error(err?.message)
-      throw new InternalServerErrorException(err?.message);
+    } catch (error) {
+      this.logger.error(error?.message)
+      throw new HttpException(error?.message ?? 'An error occurred, please try again', error?.status ?? HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -59,5 +64,15 @@ async login(user: any) {
         user,
         accessToken: this.generateJwt(payload),
     };
+}
+
+async createAdmin(data){
+  try {
+    data.role = UserRole.ADMIN;
+    return this.registerUser(data)
+  } catch (error) {
+    this.logger.error(error?.message)
+      throw new HttpException(error?.message ?? 'An error occurred, please try again', error?.status ?? HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 }
 }

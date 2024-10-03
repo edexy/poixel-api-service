@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { UserRole } from '@/users/user.constants';
 
 export class UserLoginDTO {
   @ApiProperty({example: 'testemail@example.com'})
@@ -11,4 +12,6 @@ export class UserLoginDTO {
   @IsString()
   @IsNotEmpty()
   password: string;
+
+  role?: UserRole;
 }
