@@ -34,4 +34,4 @@ lerna-debug.log*
 
 # environment variables
 .env
-sqllite-db-test
+poixel.sqlite
