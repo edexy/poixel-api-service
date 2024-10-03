@@ -27,7 +27,11 @@
     # Database
     DATABASE_NAME=poixel.sqlite
 
-5. Run migration
+5. Build project:
+    ```bash
+    yarn build
+
+6. Run migration
    ```bash
    yarn migrate
 
