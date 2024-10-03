@@ -12,7 +12,7 @@ describe('AdminService', () => {
     id: '123',
     email: 'test@example.com',
     password: 'password',
-    role: 'USER',
+    role: 'user',
   };
 
   const mockUsers = [
@@ -20,13 +20,13 @@ describe('AdminService', () => {
       id: '123',
       email: 'test@example.com',
       password: 'password',
-      role: 'USER',
+      role: 'user',
     },
     {
       id: '456',
       email: 'test2@example.com',
       password: 'password',
-      role: 'USER',
+      role: 'user',
     },
   ];
 

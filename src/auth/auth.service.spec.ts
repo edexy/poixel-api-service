@@ -105,7 +105,9 @@ describe('AuthService', () => {
       });
 
       await expect(service.registerUser(userDto)).rejects.toThrow(
-        new BadRequestException(`User ${userDto.email} already exists`),
+        new BadRequestException(
+          `User with email: ${userDto.email}, already exists`,
+        ),
       );
       expect(userRepository.findByEmail).toHaveBeenCalledWith(userDto.email);
       expect(userRepository.store).not.toHaveBeenCalled();
@@ -218,7 +220,9 @@ describe('AuthService', () => {
       });
 
       await expect(service.createAdmin(adminDto)).rejects.toThrow(
-        new BadRequestException(`User ${adminDto.email} already exists`),
+        new BadRequestException(
+          `User with email: ${adminDto.email}, already exists`,
+        ),
       );
       expect(userRepository.findByEmail).toHaveBeenCalledWith(adminDto.email);
       expect(userRepository.store).not.toHaveBeenCalled();

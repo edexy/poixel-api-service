@@ -51,7 +51,7 @@ export class AdminController {
       page,
     );
     return {
-      _metadata: { pagination, message: 'Signed Up Successfully' },
+      _metadata: { pagination, message: 'clients fetched  successfully' },
       data: users,
     };
   }
@@ -74,7 +74,7 @@ export class AdminController {
   }
 
   @Delete('users/:userId')
-  @ApiOperation({ description: 'Remove client' })
+  @ApiOperation({ description: 'Delete client' })
   @ApiOkResponse({
     description: 'User details deleted',
     type: null,
