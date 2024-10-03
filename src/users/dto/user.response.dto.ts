@@ -30,6 +30,15 @@ export class UserResponseDto {
   message: string = 'success';
   @ApiProperty()
   data: User;
+}
+
+export class LoginResponseDto {
+  @ApiProperty()
+  statusCode: number = 200;
+  @ApiProperty()
+  message: string = 'success';
+  @ApiProperty()
+  data: User;
   @ApiProperty()
   accessToken: string;
 }

@@ -9,7 +9,10 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { UserResponseDto } from '@/users/dto/user.response.dto';
+import {
+  LoginResponseDto,
+  UserResponseDto,
+} from '@/users/dto/user.response.dto';
 import { CreateAdminDTO, CreateUserDTO } from '@/users/dto/create-users.dto';
 import { UserLoginDTO } from './login.dto';
 import { LocalAuthGuard } from './guards/jwt-local.guard';
@@ -38,7 +41,7 @@ export class AuthController {
   @Post('login')
   @ApiOkResponse({
     description: 'Logged in user details',
-    type: UserResponseDto,
+    type: LoginResponseDto,
   })
   @ApiOperation({ description: 'User login' })
   async login(@Req() req, @Body() data: UserLoginDTO) {

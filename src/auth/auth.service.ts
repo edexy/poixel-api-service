@@ -63,7 +63,6 @@ export class AuthService {
   }
   async login(user: any) {
     const payload = { email: user.email, id: user.id, role: user.role };
-
     return {
       user,
       accessToken: this.generateJwt(payload),

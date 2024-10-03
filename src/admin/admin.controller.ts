@@ -16,12 +16,14 @@ import {
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
+  ApiOkResponse,
   ApiOperation,
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
 import { AdminService } from './admin.service';
 import { UpdateUserDTO } from '@/users/dto/update-user.dto';
+import { UserResponseDto } from '@/users/dto/user.response.dto';
 
 @Controller('admin')
 @ApiTags('Admin')
@@ -36,6 +38,10 @@ export class AdminController {
   @ApiQuery({ name: 'pageSize', example: 20, required: false })
   @ApiQuery({ name: 'page', example: 1, required: false })
   @ApiOperation({ description: 'Get all registered clients' })
+  @ApiOkResponse({
+    description: 'All users details',
+    type: [UserResponseDto],
+  })
   async getAllUsers(
     @Query('pageSize') pageSize: number = 20,
     @Query('page') page: number = 1,
@@ -52,6 +58,10 @@ export class AdminController {
 
   @Put('users/:userId')
   @ApiOperation({ description: 'Modify client details.' })
+  @ApiOkResponse({
+    description: 'Updated user details',
+    type: UserResponseDto,
+  })
   async updateUser(
     @Param('userId') userId: string,
     @Body() data: UpdateUserDTO,
@@ -65,6 +75,10 @@ export class AdminController {
 
   @Delete('users/:userId')
   @ApiOperation({ description: 'Remove client' })
+  @ApiOkResponse({
+    description: 'User details deleted',
+    type: null,
+  })
   async deleteUser(@Param('userId') userId: string) {
     await this.adminService.deleteUser(userId);
     return {
