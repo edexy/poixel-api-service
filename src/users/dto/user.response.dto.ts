@@ -1,43 +1,28 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from '../entities/user.entity';
+import { BusinessType, UserRole } from '../user.constants';
 
-// export class User {
-//   @ApiProperty()
-//   id: string;
+export class User {
+  @ApiProperty()
+  id: string;
 
-//   @ApiProperty()
-//   firstName: string;
+  @ApiProperty()
+  name: string;
 
-//   @ApiProperty()
-//   lastName: string;
+  @ApiProperty()
+  email: string;
 
-//   @ApiProperty()
-//   email: string;
+  @ApiProperty()
+  businessType: BusinessType;
 
-//   @ApiProperty()
-//   phoneNumber: string;
+  @ApiProperty()
+  role: UserRole;
 
-//   @ApiProperty()
-//   address: string;
+  @ApiProperty()
+  isActive: boolean;
 
-//   @ApiProperty()
-//   userType: string;
-
-//   @ApiProperty()
-//   photo: string;
-
-//   @ApiProperty()
-//   isActive: boolean;
-
-//   @ApiProperty()
-//   isVerified: boolean;
-
-//   @ApiProperty()
-//   isPhoneNumberVerified: boolean;
-
-//   @ApiProperty()
-//   createdAt: Date;
-// }
+  @ApiProperty()
+  createdAt: Date;
+}
 export class UserResponseDto {
   @ApiProperty()
   statusCode: number = 200;

@@ -19,14 +19,15 @@ export class UserRepository extends Repository<User> {
     );
   }
 
-  public async findAllUser(pageSize, page): Promise<any> {
+  public async findAllUser(pageSize: number, page: number): Promise<any> {
     const pageNo = page || 1;
     const pageLimit = pageSize || 20;
     const offset = (pageNo - 1) * pageLimit;
     const sortBy = `users.createdAt`;
     const order = 'DESC';
-    const query = this.createQueryBuilder('users')
-      .where('users.role = :role', { role: UserRole.USER })
+    const query = this.createQueryBuilder('users').where('users.role = :role', {
+      role: UserRole.USER,
+    });
     const [rows, count] = await query
       .take(pageLimit)
       .skip(offset)

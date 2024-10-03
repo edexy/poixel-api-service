@@ -5,22 +5,22 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreateUserDTO {
   id?: string;
 
-  @ApiProperty({example: 'Joe Doe'})
+  @ApiProperty({ example: 'Joe Doe' })
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty({example: 'testemail@example.com'})
+  @ApiProperty({ example: 'testemail@example.com' })
   @IsString()
   @IsNotEmpty()
   email: string;
 
-  @ApiProperty({example: 'testP@ssW0rd'})
+  @ApiProperty({ example: 'testP@ssW0rd' })
   @IsString()
   @IsNotEmpty()
   password: string;
 
-  @ApiProperty({enum: BusinessType})
+  @ApiProperty({ enum: BusinessType })
   @IsEnum(BusinessType)
   @IsString()
   @IsNotEmpty()
@@ -32,17 +32,17 @@ export class CreateUserDTO {
 export class CreateAdminDTO {
   id?: string;
 
-  @ApiProperty({example: 'Amin Doe'})
+  @ApiProperty({ example: 'Amin Doe' })
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty({example: 'admin@example.com'})
+  @ApiProperty({ example: 'admin@example.com' })
   @IsString()
   @IsNotEmpty()
   email: string;
 
-  @ApiProperty({example: 'testP@ssW0rd'})
+  @ApiProperty({ example: 'testP@ssW0rd' })
   @IsString()
   @IsNotEmpty()
   password: string;

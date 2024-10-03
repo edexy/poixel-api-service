@@ -29,7 +29,7 @@ export class ErrorFilter implements ExceptionFilter {
       const exceptionResponse = exception.getResponse();
       httpStatus = exception.getStatus();
       statusCode = exceptionResponse['statusCode'] ?? httpStatus;
-      message = exceptionResponse.toString()
+      message = exceptionResponse.toString();
       if (this.isErrorException(exceptionResponse)) {
         if (exceptionResponse.errors?.length > 0) {
           const errors = exceptionResponse.errors.map((error) => {

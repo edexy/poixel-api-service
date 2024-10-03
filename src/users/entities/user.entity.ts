@@ -21,7 +21,7 @@ export class User {
   @Column({ nullable: false })
   name: string;
 
-  @Column({nullable: false})
+  @Column({ nullable: false })
   @Index('idx_user_email')
   email: string;
 

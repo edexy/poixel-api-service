@@ -8,7 +8,7 @@ export class UpdateUserDTO {
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty({enum: BusinessType})
+  @ApiProperty({ enum: BusinessType })
   @IsEnum(BusinessType)
   @IsString()
   @IsNotEmpty()

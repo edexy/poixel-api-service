@@ -9,4 +9,3 @@ export enum BusinessType {
   LLC = 'Limited Liability Company',
   CORPORATION = 'Corporation',
 }
-

@@ -26,7 +26,7 @@ export class RolesGuard implements CanActivate {
     this.logger.log(
       `${method} ${url} >> requiredRoles: ${requiredRoles?.toString()}`,
     );
-    if (!requiredRoles.includes((user.role)))
+    if (!requiredRoles.includes(user.role))
       throw new ForbiddenException(
         'You do not have the required permission to access this resource',
       );

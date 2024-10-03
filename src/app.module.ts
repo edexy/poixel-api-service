@@ -9,13 +9,7 @@ import { AdminModule } from './admin/admin.module';
 
 @Module({
   providers: [AppService],
-  imports: [
-    CommonModule,
-    DatabaseModule,
-    AuthModule,
-    UsersModule,
-    AdminModule,
-  ],
+  imports: [CommonModule, DatabaseModule, AuthModule, UsersModule, AdminModule],
   controllers: [AppController],
 })
 export class AppModule {}
