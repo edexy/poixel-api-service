@@ -102,6 +102,7 @@
       "jestGlobalMocks.ts",
       ".module.ts",
       "<rootDir>/main.ts",
+      "<rootDir>/common",
       "<rootDir>/database"
     ],
     "rootDir": "src",

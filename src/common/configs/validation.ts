@@ -16,7 +16,6 @@ class EnvironmentVariables {
 
   @IsString()
   readonly JWT_SECRET: string;
-
 }
 
 export const validateEnv = (config: Record<string, unknown>) => {
